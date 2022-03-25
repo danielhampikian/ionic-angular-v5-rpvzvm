@@ -1,0 +1,42 @@
+<ion-content>
+  <!-- <ion-searchbar showCancelButton="focus" (ionInput)="searchNeighbourHoodWithSearchTerms($event)"></ion-searchbar> -->
+  <ion-searchbar
+    #searchBar
+    animated="true"
+    (ionInput)="searchNeighbourHoodWithSearchTerms($event)"
+  ></ion-searchbar>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col
+        size="auto"
+        *ngFor="let img of neighbourhoodPosts | async; index as i"
+      >
+        <img
+          class="neighbourhood-img"
+          [src]="img.download_url"
+          (click)="viewdetails(i)"
+        />
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMorePosts($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data..."
+    >
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
+
+<!-- <ng-container *ngIf="appointment$ | async as appointments">
+  <ion-item-group *ngFor="let appointment of appointments">
+    <ion-item-divider>
+      <ion-label>{{ appointment.scheduled | date: 'EEE dd' }}</ion-label>
+    </ion-item-divider>
+    <ion-item *ngFor="let userNames of appointment.clients">
+      <ion-label>{{ userNames.client }}</ion-label>
+    </ion-item>
+  </ion-item-group>
+</ng-container> -->

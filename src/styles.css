@@ -1,0 +1,7 @@
+/* Add application styles & imports to this file! */
+@import '~@ionic/angular/css/ionic.bundle.css';
+::-webkit-scrollbar {
+  background: transparent;
+  display: none;
+  width: 0;
+}
